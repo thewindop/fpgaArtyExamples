@@ -31,35 +31,10 @@
 ******************************************************************************/
 /*****************************************************************************/
 /**
-* @file xiic_low_level_tempsensor_example.c
-*
-* This file contains a polled mode design example which uses the Xilinx IIC
-* device and low-level driver to execise the temperature sensor on the ML300
-* board. This example only performs read operations (receive) from the IIC
-* temperature sensor of the platform.
-*
-* The XIic_Recv() API is used to receive the data.
-*
-* @note
-*
-* 7-bit addressing is used to access the tempsensor.
-*
-* None
-* <pre>
-* MODIFICATION HISTORY:
-*
-* Ver   Who  Date	 Changes
-* ----- ---- -------- -----------------------------------------------
-* 1.00a jhl  10/09/03 Initial Release
-* 1.00a sv   05/09/05 Minor changes to comply to Doxygen and coding guidelines
-* 1.00a mta  03/09/06 Minor updates due to changes in the low level driver for
-*			 supporting repeated start functionality.
-* 2.00a sdm  09/22/09 Minor modifications as per coding guidelines.
-*
-* </pre>
+* This file is a modified version of the Xilinx example
+* xiic_low_level_tempsensor_example.c
 *
 *****************************************************************************/
-
 /***************************** Include Files *********************************/
 
 #include "xparameters.h"
@@ -74,22 +49,6 @@
  */
 #define IIC_BASE_ADDRESS	XPAR_IIC_0_BASEADDR
 
-
-/*
- * The following constant defines the address of the IIC
- * temperature sensor device on the IIC bus.  Note that since
- * the address is only 7 bits, this  constant is the address divided by 2.
- */
-#define TEMP_SENSOR_ONCHIP_ADDRESS  0x18 /* The actual address is 0x30 */
-#define TEMP_SENSOR_AMBIENT_ADDRESS 0x4B /* The actual address is 0x96 */
-
-
-/**************************** Type Definitions *******************************/
-
-
-/***************** Macros (Inline Functions) Definitions *********************/
-
-
 /************************** Function Prototypes ******************************/
 
 int LowLevelTempSensorExample(u32 IicBaseAddress,
@@ -97,26 +56,9 @@ int LowLevelTempSensorExample(u32 IicBaseAddress,
 				u8 *sendBuffer,
 				u8 *TemperaturePtr);
 
-/************************** Variable Definitions *****************************/
-
-
-/*****************************************************************************/
-/**
-*
-* The purpose of this function is to illustrate how to use the IIC level 0
-* driver to read the temperature.
-*
-* @param	None
-*
-* @return	Always 0
-*
-* @note
-*
-* The main function is returning an integer to prevent compiler warnings.
-*
-****************************************************************************/
 int main(void)
 {
+	// Declare buffers
 	u8 i2cResultBuffer[10];
 	u8 sendBuffer[10];
 
